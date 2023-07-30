@@ -105,7 +105,7 @@ class TestFileStorage(unittest.TestCase):
         all_objects_count - storage.count()
         assert all_objects_count >= 1
 
-        #Test counting objects of a specific class
+        # Test counting objects of a specific class
         user_objects_count = storage.count(User)
         assert user_objects_count == 1
 
