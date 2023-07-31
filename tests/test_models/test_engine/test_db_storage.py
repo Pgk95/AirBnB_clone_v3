@@ -23,8 +23,9 @@ classes = {"Amenity": Amenity, "City": City, "Place": Place,
            "Review": Review, "State": State, "User": User}
 
 
-class TestDBStorageDocs(unittest.TestCase):
+class Test_DBStorageDocs(unittest.TestCase):
     """Tests to check the documentation and style of DBStorage class"""
+
     @classmethod
     def setUpClass(cls):
         """Set up for the doc tests"""
@@ -87,6 +88,31 @@ class TestFileStorage(unittest.TestCase):
     def test_save(self):
         """Test that save properly saves objects to file.json"""
 
+<<<<<<< HEAD
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_get(self):
+        """Test that return the object based on the class and its ID"""
+        storage = models.storage
+        instance = State(name='state_test')
+        instance.save()
+        self.assertIs(storage.get(State, instance.id), instance)
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_count(self):
+        """Test that count the number of objects in storage matching the
+        given class.
+        """
+        storage = models.storage
+        initial_value = models.storage.count()
+        instance = State(name='state_test')
+        instance.save()
+        end_value = storage.count()
+        self.assertEqual(initial_value + 1, end_value)
+        instance = City(state_id=instance.id, name="city_test")
+        instance.save()
+        end_value = storage.count()
+        self.assertEqual(initial_value + 2, end_value)
+=======
     def test_db_storage_get_count():
         storage = DBstorage()
 
@@ -112,3 +138,4 @@ class TestFileStorage(unittest.TestCase):
         # Clean up
         storage.delete(new_user)
         storage.save()
+>>>>>>> 1e9ecb2172db496019757f7aa458b76ab3a7b153
